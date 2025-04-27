@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Palpites</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    .descartar-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .palpite-btn {
+      background-color: limegreen;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .descartado {
+      background-color: #ddd !important;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Controle de Palpites</h1>
+
+  <table id="tabela">
+    <thead>
+      <tr>
+        <th>Descartar</th>
+        <th>Item</th>
+        <th>Palpite</th>
+        <th>Qtd Palpite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Os dados vão aqui -->
+    </tbody>
+  </table>
+
+  <script>
+    const itens = [
+      "Sargento Bigode", "Florista Dona Branca", "Chef de Cozinha Tony Gourmet", "Mordomo James",
+      "Médica Dona Violeta", "Dançarina Srta. Rosa", "Coveiro Sérgio Soturno", "Advogado Sr. Marinho",
+      "Espingarda", "Pá", "Pé-de-cabra", "Tesoura", "Arma química", "Veneno", "Soco inglês", "Faca",
+      "Prefeitura", "Restaurante", "Floricultura", "Boate", "Hospital", "Mansão", "Cemitério",
+      "Praça", "Hotel", "Banco", "Estação de Trem"
+    ];
+
+    const tabela = document.getElementById('tabela').querySelector('tbody');
+
+    itens.forEach(item => {
+      const linha = document.createElement('tr');
+
+      const tdDescartar = document.createElement('td');
+      const btnDescartar = document.createElement('button');
+      btnDescartar.textContent = "X";
+      btnDescartar.className = 'descartar-btn';
+      btnDescartar.onclick = () => {
+        linha.classList.toggle('descartado');
+      };
+      tdDescartar.appendChild(btnDescartar);
+
+      const tdItem = document.createElement('td');
+      tdItem.textContent = item;
+
+      const tdPalpite = document.createElement('td');
+      const btnPalpite = document.createElement('button');
+      btnPalpite.textContent = "+";
+      btnPalpite.className = 'palpite-btn';
+
+      const tdQtd = document.createElement('td');
+      tdQtd.textContent = "0";
+
+      btnPalpite.onclick = () => {
+        tdQtd.textContent = parseInt(tdQtd.textContent) + 1;
+      };
+      tdPalpite.appendChild(btnPalpite);
+
+      linha.appendChild(tdDescartar);
+      linha.appendChild(tdItem);
+      linha.appendChild(tdPalpite);
+      linha.appendChild(tdQtd);
+
+      tabela.appendChild(linha);
+    });
+  </script>
+
+</body>
+</html>
